@@ -1,4 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+  background-image: url("./assets/bubbles-bg.jpg");
+  background-size: cover;
+  color: whitesmoke;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.codystar-light {
+  font-family: "Codystar", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.dotted {
+  font-family: "MyWebFont";
+  font-weight: 300;
+  font-style: initial;
+}
+
+.stakes-header {
+  font-weight: bolder;
+  background-color: black;
+  text-align: center;
+  font-size: 20px;
+  padding: 2px;
+  margin: 2px;
+  height: 25px;
+  align-content: center;
+  letter-spacing: 5px;
+  width: 100%;
+}
+
+@font-face {
+  font-family: "MyWebFont";
+  src: url("./assets/square-digits.ttf") format("truetype");
+}

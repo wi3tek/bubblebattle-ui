@@ -1,0 +1,35 @@
+table,
+th,
+td {
+  text-align: center;
+}
+
+table {
+  border: 1px solid whitesmoke;
+}
+
+table {
+  width: 400px;
+}
+
+th {
+  height: 70px;
+  min-width: 200px;
+  background-color: #292929;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.game-btn {
+  height: 50px;
+  width: 150px;
+  letter-spacing: 2px;
+}
+
+.content {
+  margin: 20px;
+}
+
+.game-data {
+  font-weight: 600;
+}

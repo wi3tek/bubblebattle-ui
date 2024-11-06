@@ -1,0 +1,37 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="center end"
+  fxLayoutGap="0"
+  style="margin-top: 100px"
+>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <div class="stakes-header auction-header" style="letter-spacing: 30px">
+      LICYTACJA
+    </div>
+    <div fxLayout="row">
+      <div
+        *ngFor="let team of game?.teams"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        fxLayoutGap="1"
+      >
+        <app-team-stakes
+          *ngIf="team.active === true"
+          [team]="team"
+        ></app-team-stakes>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div
+        style="opacity: 0; margin-top: 1px"
+        class="stakes-auction-header"
+      ></div>
+      <app-team-stakes
+        [headerTitle]="'PULA'"
+        [team]="stakesTeam"
+      ></app-team-stakes>
+    </div>
+  </div>
+</div>

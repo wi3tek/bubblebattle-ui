@@ -1,0 +1,84 @@
+.stakes {
+  text-align: center;
+  color: white;
+  letter-spacing: 5px;
+}
+
+.stakes-content {
+  font-size: 100px;
+  height: 100%;
+  letter-spacing: 5px;
+  text-shadow: 5px 5px 5px black;
+  align-content: center;
+  border: white solid 1px;
+}
+
+.GREEN-header {
+  color: #26c429;
+}
+
+.BLUE-header {
+  color: #2e8ee4;
+}
+
+.YELLOW-header {
+  color: #dcc055;
+}
+
+.STAKES-header {
+  color: #a34d56;
+}
+
+.GREEN {
+  background: radial-gradient(#0b5b02, #031a00);
+}
+
+.BLUE {
+  background: radial-gradient(#042d6d, #030a24);
+}
+
+.YELLOW {
+  background: radial-gradient(#785f05, #2d2703);
+}
+
+.BLACK {
+  background: radial-gradient(#042d6d, #030a24);
+}
+
+.STAKES {
+  background: radial-gradient(#474747, #1e1e1e);
+}
+
+.auction {
+  color: white;
+  text-align: center;
+}
+
+@media screen and (min-width: 2000px) {
+  .stakes {
+    height: 300px;
+    width: 750px;
+    font-size: 50px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .stakes {
+    height: 200px;
+    width: 500px;
+    font-size: 38px;
+  }
+}
+
+.auction-STAKES {
+  opacity: 0 !important;
+}
+
+.highest-stakes-true {
+  color: #fafc2c !important;
+  height: 150px;
+}
+
+.highest-stakes-false {
+  height: 150px;
+}

@@ -1,0 +1,20 @@
+<div>
+  <div
+    [style]="team.teamColor === 'STAKES' ? 'opacity: 0' : 'opacity: 1'"
+    fxLayout="column"
+    [class]="'auction ' + team.teamColor"
+  >
+    <div [class]="'stakes-content dotted highest-stakes-' + team.highestStakes">
+      {{ team.bubbleStakesAmount }}
+    </div>
+  </div>
+
+  <div fxLayout="column" [class]="'stakes ' + team.teamColor">
+    <div [class]="'stakes-header ' + team.teamColor + '-header'">
+      {{ headerTitle }}
+    </div>
+    <div class="stakes-content dotted">
+      {{ team.bubbleAmount | spaceForThousands }}
+    </div>
+  </div>
+</div>
