@@ -5,7 +5,14 @@
 }
 
 .stakes-content {
-  font-size: 100px;
+  height: 100%;
+  letter-spacing: 5px;
+  text-shadow: 5px 5px 5px black;
+  align-content: center;
+  border: white solid 1px;
+}
+
+.auction-content {
   height: 100%;
   letter-spacing: 5px;
   text-shadow: 5px 5px 5px black;
@@ -54,31 +61,69 @@
   text-align: center;
 }
 
-@media screen and (min-width: 2000px) {
+@media screen and (max-width: 1920px) {
   .stakes {
-    height: 300px;
-    width: 750px;
-    font-size: 50px;
+    height: 150px;
+    width: 425px;
+  }
+
+  .stakes-content {
+    font-size: 75px;
+  }
+
+  .auction-content {
+    font-size: 75px;
+  }
+
+  .auction {
+    height: 100px;
   }
 }
 
-@media screen and (min-width: 1600px) {
+@media screen and (max-width: 2560px) and (min-width: 1921px) {
   .stakes {
     height: 200px;
     width: 500px;
-    font-size: 38px;
+  }
+
+  .stakes-content {
+    font-size: 100px;
+  }
+
+  .auction-content {
+    font-size: 100px;
+    height: 134px;
+  }
+
+  .auction {
+    height: 134px;
+  }
+}
+
+@media screen and (max-width: 3840px) and (min-width: 2561px) {
+  .stakes {
+    height: 300px;
+    width: 750px;
+  }
+
+  .stakes-content {
+    font-size: 150px;
+  }
+
+  .auction-content {
+    font-size: 150px;
+    height: 300px;
+  }
+
+  .auction {
+    height: 200px;
   }
 }
 
 .auction-STAKES {
-  opacity: 0 !important;
+  opacity: 0;
 }
 
 .highest-stakes-true {
-  color: #fafc2c !important;
-  height: 150px;
-}
-
-.highest-stakes-false {
-  height: 150px;
+  color: #fafc2c;
 }

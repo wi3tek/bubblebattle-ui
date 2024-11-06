@@ -4,7 +4,9 @@
     fxLayout="column"
     [class]="'auction ' + team.teamColor"
   >
-    <div [class]="'stakes-content dotted highest-stakes-' + team.highestStakes">
+    <div
+      [class]="'auction-content dotted highest-stakes-' + team.highestStakes"
+    >
       {{ team.bubbleStakesAmount }}
     </div>
   </div>
