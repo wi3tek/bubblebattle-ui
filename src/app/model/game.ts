@@ -4,8 +4,10 @@ export interface Game {
   date: Date;
   gameStage: string;
   roundStage: string;
+  roundNumber: number;
   teams: TeamData[];
   bubbleStakes: number;
+  hostActions: HostAction[];
 }
 
 export interface TeamData {
@@ -42,4 +44,22 @@ export interface ChangeStatusRequest {
   gameId: string;
   team: string;
   bubblesAmount: number;
+}
+
+export interface HostAction {
+  action: Action;
+  description: string;
+}
+
+export enum Action {
+  START_GAME,
+  CHOOSE_CATEGORY,
+  START_AUCTION,
+  FINISH_AUCTION,
+  RANDOM_QUESTION,
+  SHOW_QUESTION,
+  SELL_ANSWERS,
+  ANSWER_THE_QUESTION,
+  FINISH_ROUND,
+  GO_TO_THE_FINAL,
 }
