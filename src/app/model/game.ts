@@ -63,3 +63,7 @@ export enum Action {
   FINISH_ROUND,
   GO_TO_THE_FINAL,
 }
+
+export interface CreateGameRequest {
+  name: string;
+}

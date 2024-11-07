@@ -13,8 +13,8 @@ table {
 }
 
 th {
-  height: 70px;
-  min-width: 200px;
+  height: 75px;
+  min-width: 400px;
   background-color: #292929;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -27,9 +27,25 @@ th {
 }
 
 .content {
-  margin: 20px;
+  margin: 50px;
 }
 
 .game-data {
   font-weight: 600;
+  font-size: 20px;
+}
+
+.new-game {
+  display: none;
+}
+
+.actions:hover .new-game {
+  display: block;
+}
+
+.no-game {
+  margin: 50px;
+  font-size: 30px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
 }

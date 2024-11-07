@@ -12,6 +12,7 @@
   margin: 5px;
   border: 1px solid white;
   text-transform: uppercase;
+  align-content: center;
 }
 .action-button span {
   cursor: pointer;
@@ -21,7 +22,7 @@
 }
 
 .action-button span:after {
-  content: "\00bb";
+  /* content: "\00bb"; */
   position: absolute;
   opacity: 0;
   top: 0;
@@ -42,4 +43,8 @@
   background-color: #ccc;
   cursor: pointer;
   color: black;
+}
+
+button {
+  background: none;
 }

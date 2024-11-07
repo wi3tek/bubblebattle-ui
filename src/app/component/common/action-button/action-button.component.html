@@ -1,3 +1,10 @@
-<div class="action-button" [style]="'width:' + width + 'px'">
-  <span>{{ textValue }}</span>
+<div
+  class="action-button"
+  [style]="'width:' + width + 'px; height: ' + height + 'px'"
+  (click)="clickButton.emit()"
+>
+  <span *ngIf="!icon">{{ textValue }}</span>
+  <span *ngIf="icon" style="align-content: center; text-align: center"
+    ><i class="material-icons">{{ icon }}</i></span
+  >
 </div>

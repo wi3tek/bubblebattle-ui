@@ -12,6 +12,8 @@ import { TeamStakesComponent } from './app/component/team-stakes/team-stakes.com
 import { PointReplacerPipe } from './app/config/pipes';
 import { AuctionComponent } from './app/component/participant/auction/auction.component';
 import { ActionButtonComponent } from './app/component/common/action-button/action-button.component';
+import { NewGameComponent } from './app/component/new-game/new-game.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { ActionButtonComponent } from './app/component/common/action-button/acti
     PointReplacerPipe,
     AuctionComponent,
     ActionButtonComponent,
+    NewGameComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { ActionButtonComponent } from './app/component/common/action-button/acti
     BrowserAnimationsModule,
     HttpClientModule,
     FlexLayoutModule,
+    ReactiveFormsModule,
   ],
   providers: [PointReplacerPipe],
   bootstrap: [AppComponent],

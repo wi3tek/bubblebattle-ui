@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, shareReplay, Subject, throwError } from 'rxjs';
-import { GetGamesResponse } from '../model/game';
+import { CreateGameRequest, Game, GetGamesResponse } from '../model/game';
 import { environment } from '../config/environment';
 
 @Injectable({
@@ -14,6 +14,12 @@ export class GameService {
   getGames(): Observable<GetGamesResponse> {
     return this.http
       .get<GetGamesResponse>(this.baseUrl + '/getGames')
+      .pipe(catchError(this.handleError));
+  }
+
+  createGame(request: CreateGameRequest): Observable<Game> {
+    return this.http
+      .post<Game>(this.baseUrl + '/createGame', request)
       .pipe(catchError(this.handleError));
   }
 

@@ -1,41 +1,58 @@
 <div
   class="content"
   role="main"
-  fxLayout="row"
+  fxLayout="column"
   fxLayoutAlign="center center"
   fxFlex="100"
 >
-  <div>
-    <table>
-      <tr>
-        <th>Data utworzenia</th>
-        <th>Nazwa</th>
-        <th>Uruchom grę</th>
-      </tr>
-      <tr *ngFor="let game of games">
-        <td class="game-data">{{ game.date | date : "yyyy-MM-dd" }}</td>
-        <td class="game-data">{{ game.name }}</td>
-        <td>
-          <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5">
-            <div>
-              <a [routerLink]="['/host/', game.gameId]" target="_blank">
-                <app-action-button
-                  [textValue]="'prowadzący'"
-                  [width]="'200'"
-                ></app-action-button>
-              </a>
-            </div>
-            <div>
-              <a [routerLink]="['/participant/', game.gameId]" target="_blank">
-                <app-action-button
-                  [textValue]="'uczestnik'"
-                  [width]="'200'"
-                ></app-action-button>
-              </a>
+  <table>
+    <tr>
+      <th>Data utworzenia</th>
+      <th>Nazwa</th>
+      <th>
+        <div
+          class="actions"
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+        >
+          <div fxFlex="20"></div>
+          <div fxFlex="60">Uruchom grę</div>
+          <div fxFlex="20" fxLayoutAlign="end center">
+            <div class="new-game" [routerLink]="['/new-game/']">
+              <app-action-button
+                height="20"
+                width="20"
+                icon="add"
+              ></app-action-button>
             </div>
           </div>
-        </td>
-      </tr>
-    </table>
-  </div>
+        </div>
+      </th>
+    </tr>
+    <tr *ngFor="let game of games">
+      <td class="game-data">{{ game.date | date : "yyyy-MM-dd" }}</td>
+      <td class="game-data">{{ game.name }}</td>
+      <td>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5">
+          <div>
+            <a [routerLink]="['/host/', game.gameId]" target="_blank">
+              <app-action-button
+                [textValue]="'prowadzący'"
+                [width]="'200'"
+              ></app-action-button>
+            </a>
+          </div>
+          <div>
+            <a [routerLink]="['/participant/', game.gameId]" target="_blank">
+              <app-action-button
+                [textValue]="'uczestnik'"
+                [width]="'200'"
+              ></app-action-button>
+            </a>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="no-game" *ngIf="games.length === 0">Brak gier</div>
 </div>
