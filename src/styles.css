@@ -24,19 +24,6 @@ body {
   font-style: initial;
 }
 
-.stakes-header {
-  font-weight: bolder;
-  background-color: black;
-  text-align: center;
-  font-size: 20px;
-  padding: 2px;
-  margin: 2px;
-  height: 25px;
-  align-content: center;
-  letter-spacing: 5px;
-  width: 100%;
-}
-
 @font-face {
   font-family: "MyWebFont";
   src: url("./assets/square-digits.ttf") format("truetype");

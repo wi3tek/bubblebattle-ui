@@ -9,4 +9,5 @@ import { TeamData } from 'src/app/model/game';
 export class TeamStakesComponent {
   @Input() team!: TeamData;
   @Input() headerTitle: string = 'STAN BOMBELKÓW';
+  @Input() auctionMode!: boolean;
 }

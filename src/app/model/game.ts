@@ -67,3 +67,8 @@ export enum Action {
 export interface CreateGameRequest {
   name: string;
 }
+
+export interface PerformActionRequest {
+  gameId: string;
+  action: Action;
+}

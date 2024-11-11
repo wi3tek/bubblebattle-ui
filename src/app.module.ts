@@ -10,7 +10,7 @@ import { InitHostGameComponent } from './app/component/host/init-host-game/init-
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TeamStakesComponent } from './app/component/team-stakes/team-stakes.component';
 import { PointReplacerPipe } from './app/config/pipes';
-import { AuctionComponent } from './app/component/participant/auction/auction.component';
+import { TeamBubblesComponent } from './app/component/participant/team-bubbles/team-bubbles.component';
 import { ActionButtonComponent } from './app/component/common/action-button/action-button.component';
 import { NewGameComponent } from './app/component/new-game/new-game.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     InitHostGameComponent,
     TeamStakesComponent,
     PointReplacerPipe,
-    AuctionComponent,
+    TeamBubblesComponent,
     ActionButtonComponent,
     NewGameComponent,
   ],

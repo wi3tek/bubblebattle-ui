@@ -1,17 +1,17 @@
 <div>
   <div
+    *ngIf="auctionMode"
     [style]="team.teamColor === 'STAKES' ? 'opacity: 0' : 'opacity: 1'"
-    fxLayout="column"
-    [class]="'auction ' + team.teamColor"
+    [class]="
+      team.teamColor +
+      ' auction-content dotted highest-stakes-' +
+      team.highestStakes
+    "
   >
-    <div
-      [class]="'auction-content dotted highest-stakes-' + team.highestStakes"
-    >
-      {{ team.bubbleStakesAmount }}
-    </div>
+    {{ team.bubbleStakesAmount }}
   </div>
 
-  <div fxLayout="column" [class]="'stakes ' + team.teamColor">
+  <div fxLayout="column" [class]="team.teamColor">
     <div [class]="'stakes-header ' + team.teamColor + '-header'">
       {{ headerTitle }}
     </div>

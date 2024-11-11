@@ -1,4 +1,14 @@
-<app-auction
-  *ngIf="roundStage !== 'AUCTION' && game"
+<app-team-bubbles
+  *ngIf="roundStage === 'AUCTION' && game"
   [game]="game"
-></app-auction>
+  [auctionMode]="true"
+></app-team-bubbles>
+
+<app-team-bubbles
+  *ngIf="
+    (roundStage === 'ROUND_SUMMARY' && game) ||
+    (roundStage === 'CATEGORY_SELECTION' && game)
+  "
+  [game]="game"
+  [auctionMode]="false"
+></app-team-bubbles>

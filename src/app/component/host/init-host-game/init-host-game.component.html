@@ -1,6 +1,9 @@
 <div fxLayout="row" class="content">
   <div fxFlex="20" fxLayout="column" *ngFor="let action of actions">
-    <app-action-button [textValue]="action.description"></app-action-button>
+    <app-action-button
+      (clickButton)="performAction(action)"
+      [textValue]="action.description"
+    ></app-action-button>
   </div>
   <div fxFlex="70"></div>
 </div>

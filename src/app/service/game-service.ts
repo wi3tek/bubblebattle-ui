@@ -23,7 +23,7 @@ export class GameService {
       .pipe(catchError(this.handleError));
   }
 
-  private handleError(error: HttpErrorResponse) {
+  public handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       console.error('An error occured on client side:', error.error);
     } else {

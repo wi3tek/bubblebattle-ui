@@ -5,7 +5,11 @@
   style="margin-top: 100px"
 >
   <div fxLayout="column" fxLayoutAlign="center center">
-    <div class="stakes-header auction-header" style="letter-spacing: 30px">
+    <div
+      *ngIf="auctionMode"
+      class="auction-header"
+      style="letter-spacing: 30px"
+    >
       LICYTACJA
     </div>
     <div fxLayout="row">
@@ -18,6 +22,7 @@
         <app-team-stakes
           *ngIf="team.active === true"
           [team]="team"
+          [auctionMode]="auctionMode"
         ></app-team-stakes>
       </div>
     </div>

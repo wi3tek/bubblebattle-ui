@@ -1,23 +1,20 @@
-.stakes {
-  text-align: center;
-  color: white;
-  letter-spacing: 5px;
-}
-
 .stakes-content {
-  height: 100%;
   letter-spacing: 5px;
   text-shadow: 5px 5px 5px black;
   align-content: center;
   border: white solid 1px;
+  text-align: center;
+  color: white;
 }
 
 .auction-content {
-  height: 100%;
+  height: 150px;
   letter-spacing: 5px;
   text-shadow: 5px 5px 5px black;
   align-content: center;
   border: white solid 1px;
+  color: white;
+  text-align: center;
 }
 
 .GREEN-header {
@@ -56,67 +53,54 @@
   background: radial-gradient(#474747, #1e1e1e);
 }
 
-.auction {
-  color: white;
-  text-align: center;
-}
-
 @media screen and (max-width: 1920px) {
-  .stakes {
+  .stakes-content {
+    font-size: 75px;
     height: 150px;
     width: 425px;
   }
 
-  .stakes-content {
-    font-size: 75px;
-  }
-
   .auction-content {
     font-size: 75px;
+    height: 160px;
   }
 
-  .auction {
-    height: 100px;
+  .stakes-header {
+    font-size: 30px;
   }
 }
 
 @media screen and (max-width: 2560px) and (min-width: 1921px) {
-  .stakes {
+  .stakes-content {
+    font-size: 100px;
     height: 200px;
     width: 500px;
   }
 
-  .stakes-content {
-    font-size: 100px;
-  }
-
   .auction-content {
     font-size: 100px;
-    height: 134px;
+    height: 220px;
   }
 
-  .auction {
-    height: 134px;
+  .stakes-header {
+    font-size: 40px;
   }
 }
 
 @media screen and (max-width: 3840px) and (min-width: 2561px) {
-  .stakes {
-    height: 300px;
-    width: 750px;
-  }
-
   .stakes-content {
+    height: 300px;
     font-size: 150px;
+    width: 750px;
   }
 
   .auction-content {
     font-size: 150px;
-    height: 300px;
+    height: 330px;
   }
 
-  .auction {
-    height: 200px;
+  .stakes-header {
+    font-size: 50px;
   }
 }
 
@@ -126,4 +110,14 @@
 
 .highest-stakes-true {
   color: #fafc2c;
+}
+
+.stakes-header {
+  font-weight: bolder;
+  background-color: black;
+  text-align: center;
+  font-size: 20px;
+  align-content: center;
+  letter-spacing: 5px;
+  padding: 4px;
 }

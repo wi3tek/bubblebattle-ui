@@ -4,15 +4,16 @@ import { Game, TeamData } from 'src/app/model/game';
 import { ParticipantGameService } from 'src/app/service/participant-game-service';
 
 @Component({
-  selector: 'app-auction',
-  templateUrl: './auction.component.html',
-  styleUrls: ['./auction.component.css'],
+  selector: 'app-team-bubbles',
+  templateUrl: './team-bubbles.component.html',
+  styleUrls: ['./team-bubbles.component.css'],
 })
-export class AuctionComponent {
+export class TeamBubblesComponent {
   gameResponse: string | null = null;
   waitingForResult: boolean = false;
 
   @Input() game!: Game;
+  @Input() auctionMode!: boolean;
 
   stakesTeam: TeamData = {
     teamColor: 'STAKES',
