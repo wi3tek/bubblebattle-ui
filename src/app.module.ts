@@ -13,7 +13,17 @@ import { PointReplacerPipe } from './app/config/pipes';
 import { TeamBubblesComponent } from './app/component/participant/team-bubbles/team-bubbles.component';
 import { ActionButtonComponent } from './app/component/common/action-button/action-button.component';
 import { NewGameComponent } from './app/component/new-game/new-game.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CategorySelectionComponent } from './app/component/host/category-selection/category-selection.component';
+import { AuctionComponent } from './app/component/host/auction/auction.component';
+import { AuctionItemComponent } from './app/component/host/auction-item/auction-item.component';
+import { HostQuestionComponent } from './app/component/host/host-question/host-question.component';
+import { ParticipantQuestionComponent } from './app/component/participant/participant-question/participant-question.component';
+import { TimerComponent } from './app/component/timer/timer.component';
+import { SellAnswersComponent } from './app/component/host/sell-answers/sell-answers.component';
+import { CustomInputComponent } from './app/component/common/custom-input/custom-input.component';
+import { GivingAnswerComponent } from './app/component/host/giving-answer/giving-answer.component';
+import { BubblesCounterComponent } from './app/component/common/bubbles-counter/bubbles-counter.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +36,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     TeamBubblesComponent,
     ActionButtonComponent,
     NewGameComponent,
+    CategorySelectionComponent,
+    AuctionComponent,
+    AuctionItemComponent,
+    HostQuestionComponent,
+    ParticipantQuestionComponent,
+    TimerComponent,
+    SellAnswersComponent,
+    CustomInputComponent,
+    GivingAnswerComponent,
+    BubblesCounterComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +54,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [PointReplacerPipe],
   bootstrap: [AppComponent],

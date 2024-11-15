@@ -1,0 +1,159 @@
+.stakes-content {
+  letter-spacing: 5px;
+  text-shadow: 5px 5px 5px black;
+  align-content: center;
+  border: white solid 1px;
+  text-align: center;
+  color: white;
+}
+
+.auction-content {
+  font-size: 65px;
+  height: 150px;
+  letter-spacing: 5px;
+  text-shadow: 5px 5px 5px black;
+  align-content: center;
+  border: white solid 1px;
+  color: white;
+  text-align: center;
+}
+
+.GREEN-header {
+  color: #26c429;
+}
+
+.BLUE-header {
+  color: #2e8ee4;
+}
+
+.BLACK-header {
+  color: #707070;
+}
+
+.YELLOW-header {
+  color: #dcc055;
+}
+
+.STAKES-header {
+  color: #a34d56;
+}
+
+.GREEN {
+  background: radial-gradient(#0b5b02, #031a00);
+}
+
+.BLUE {
+  background: radial-gradient(#042d6d, #030a24);
+}
+
+.YELLOW {
+  background: radial-gradient(#785f05, #2d2703);
+}
+
+.BLACK {
+  background: radial-gradient(#787878, #292929);
+}
+
+.STAKES {
+  background: radial-gradient(#474747, #1e1e1e);
+}
+
+.stakes-content {
+  font-size: 65px;
+  height: 120px;
+  min-width: 350px;
+}
+
+.stakes-header {
+  font-size: 30px;
+}
+
+.auction-STAKES {
+  opacity: 0;
+}
+
+.highest-stakes-true {
+  color: #fafc2c;
+  filter: brightness(200%);
+}
+
+.stakes-header {
+  font-weight: bolder;
+  background-color: black;
+  text-align: center;
+  font-size: 20px;
+  align-content: center;
+  letter-spacing: 5px;
+  padding: 4px;
+}
+
+.stakes-button {
+  height: 60px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 20px;
+  margin-top: 2px;
+}
+
+.custom-stakes-button {
+  margin: 2px;
+  font-size: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.stakes-input {
+  height: 60px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 20px;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.team-YELLOW {
+  background: radial-gradient(white, #785f05);
+  color: #2d2703;
+}
+
+.team-BLUE {
+  background: radial-gradient(white, #042d6d);
+  color: #030a24;
+}
+
+.team-GREEN {
+  background: radial-gradient(white, #0b5b02);
+  color: #031a00;
+}
+
+.team-BLACK {
+  background: radial-gradient(white, #787878);
+  color: #031a00;
+}
+
+.bid-button:hover {
+  background: radial-gradient(darkred, red);
+  color: white;
+}
+
+*:disabled {
+  pointer-events: none;
+  color: lightgray;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.stakes-bid {
+  cursor: default;
+  opacity: 0;
+  pointer-events: none;
+}

@@ -21,6 +21,10 @@
   color: #26c429;
 }
 
+.BLACK-header {
+  color: #707070;
+}
+
 .BLUE-header {
   color: #2e8ee4;
 }
@@ -46,7 +50,7 @@
 }
 
 .BLACK {
-  background: radial-gradient(#042d6d, #030a24);
+  background: radial-gradient(#787878, #292929);
 }
 
 .STAKES {
@@ -110,6 +114,7 @@
 
 .highest-stakes-true {
   color: #fafc2c;
+  filter: brightness(200%);
 }
 
 .stakes-header {
@@ -118,6 +123,6 @@
   text-align: center;
   font-size: 20px;
   align-content: center;
-  letter-spacing: 5px;
+  letter-spacing: 6px;
   padding: 4px;
 }

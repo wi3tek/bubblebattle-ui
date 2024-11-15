@@ -1,0 +1,17 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div class="header">Udzielona odpowiedź</div>
+  <div fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="10">
+    <app-action-button
+      class="correct"
+      (clickButton)="correctAnswer()"
+      width="200"
+      textValue="POPRAWNA"
+    ></app-action-button>
+    <app-action-button
+      class="wrong"
+      width="200"
+      (clickButton)="wrongAnswer()"
+      textValue="NIEPOPRAWNA"
+    ></app-action-button>
+  </div>
+</div>

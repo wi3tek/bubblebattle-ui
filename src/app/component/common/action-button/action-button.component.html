@@ -1,6 +1,8 @@
 <div
   class="action-button"
-  [style]="'width:' + width + 'px; height: ' + height + 'px'"
+  [style]="
+    'width:' + width + 'px; height: ' + height + 'px; font-size:' + fontSize
+  "
   (click)="clickButton.emit()"
 >
   <span *ngIf="!icon">{{ textValue }}</span>

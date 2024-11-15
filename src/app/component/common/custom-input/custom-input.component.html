@@ -1,0 +1,25 @@
+<div
+  class="content"
+  role="main"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  fxFlex="100"
+>
+  <div>
+    <form [formGroup]="newGameForm" (ngSubmit)="confirm()">
+      <input type="text" formControlName="value" [placeholder]="placeholder" />
+    </form>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <app-action-button
+        (clickButton)="cancel()"
+        width="100"
+        textValue="ANULUJ"
+      ></app-action-button>
+      <app-action-button
+        (clickButton)="confirm()"
+        width="100"
+        [textValue]="buttonValue"
+      ></app-action-button>
+    </div>
+  </div>
+</div>

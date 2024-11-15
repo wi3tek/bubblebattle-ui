@@ -1,7 +1,8 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Game } from 'src/app/model/game';
 import { ParticipantGameService } from 'src/app/service/participant-game-service';
+import { ParticipantQuestionComponent } from '../participant-question/participant-question.component';
 
 @Component({
   selector: 'app-init-participant-game',
@@ -15,6 +16,8 @@ export class InitParticipantGameComponent {
   waitingForResult: boolean = false;
   gameStage: string = '';
   roundStage: string = '';
+  @ViewChild(ParticipantQuestionComponent)
+  participantQuestionRef!: ParticipantQuestionComponent;
 
   public constructor(
     private initGameService: ParticipantGameService,
@@ -39,6 +42,7 @@ export class InitParticipantGameComponent {
         this.game = JSON.parse(response);
         this.gameStage = this.game ? this.game.gameStage : this.gameStage;
         this.roundStage = this.game ? this.game.roundStage : this.roundStage;
+        this.participantQuestionRef.startTimer();
         console.log(this.game);
         this.cd.detectChanges();
       },

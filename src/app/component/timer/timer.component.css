@@ -1,0 +1,9 @@
+.timer {
+  letter-spacing: 5px;
+  font-size: 70px;
+  background: radial-gradient(#464646, #1b1c1c);
+  text-shadow: 2px 2px 2px gray;
+  color: #f6f6f5;
+  padding: 10px;
+  border: 1px white solid;
+}

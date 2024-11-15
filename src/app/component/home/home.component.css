@@ -14,10 +14,14 @@ table {
 
 th {
   height: 75px;
-  min-width: 400px;
+  min-width: 300px;
   background-color: #292929;
   text-transform: uppercase;
   letter-spacing: 2px;
+}
+
+td {
+  background-color: rgba(71, 71, 71, 0.9);
 }
 
 .game-btn {

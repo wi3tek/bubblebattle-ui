@@ -1,0 +1,76 @@
+<div fxLayout="column" fxLayutAlign="start start"></div>
+<div>
+  <div
+    *ngIf="auctionStage || winnerColor"
+    [style]="team.teamColor === 'STAKES' ? 'opacity: 0' : 'opacity: 1'"
+    [class]="
+      team.teamColor +
+      ' auction-content dotted highest-stakes-' +
+      team.highestStakes
+    "
+  >
+    {{ team.bubbleStakesAmount | spaceForThousands }}
+  </div>
+
+  <div fxLayout="column" [class]="team.teamColor">
+    <div [class]="'stakes-header ' + team.teamColor + '-header '">
+      {{ headerTitle }}
+    </div>
+    <div class="stakes-content dotted">
+      {{
+        team.teamColor === "STAKES"
+          ? (gameStakes | spaceForThousands)
+          : (team.bubbleAmount | spaceForThousands)
+      }}
+    </div>
+  </div>
+</div>
+<div
+  [class]="team.teamColor === 'STAKES' ? 'stakes-bid' : ''"
+  *ngIf="auctionStage"
+  fxLayoutAlign="center center"
+>
+  <div fxLayout="column">
+    <div fxLayout="row wrap" fxLayoutGap="2">
+      <button
+        [class]="'stakes-button bid-button team-' + team.teamColor"
+        fxFlex="32"
+        *ngFor="let element of teamStakesOptions"
+        (click)="raiseTheStakes(element, false)"
+        [disabled]="teamBlocked || element === 0"
+      >
+        <span>
+          {{ element === 0 ? "" : (element | spaceForThousands) }}
+        </span>
+      </button>
+    </div>
+    <div fxLayout="row" fxLayoutGap="1">
+      <form
+        fxFlex="48"
+        [formGroup]="bidForm"
+        (ngSubmit)="raiseCustomStakes(bidAmount, false)"
+      >
+        <input
+          fxFlex="100"
+          class="stakes-input"
+          formControlName="value"
+          placeholder="Wpisz kwotę"
+          [(ngModel)]="bidAmount"
+          maxlength="5"
+          type="text"
+          *ngIf="!teamBlocked"
+        />
+      </form>
+      <div fxFlex="49">
+        <button
+          fxFlex="100"
+          [class]="'stakes-button bid-button team-' + team.teamColor"
+          (click)="raiseTheStakes(0, true)"
+          [disabled]="teamBlocked"
+        >
+          VABANK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

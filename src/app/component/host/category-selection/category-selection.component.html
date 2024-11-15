@@ -1,0 +1,43 @@
+<div class="content" fxLayoutGap="10">
+  <div fxLayoutAlign="center center" fxLayout="column">
+    <h1>Wybierz kategorię</h1>
+    <div class="select">
+      <select
+        [(ngModel)]="selectedCategory"
+        name="format"
+        id="format"
+        class="selector"
+      >
+        <option selected disabled [ngValue]="">Wybierz kategorię</option>
+        <option
+          *ngFor="let category of categories"
+          [value]="category.value"
+          [ngValue]="category"
+          fxFlex="100"
+          style="letter-spacing: 10px"
+        >
+          <div
+            fxFlex="100"
+            class="category-option"
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            fxLayoutGap="100px"
+            (click)="chooseCategory(category)"
+          >
+            <div fxFlex="50" (click)="chooseCategory(category)">
+              {{ category.value }}
+            </div>
+          </div>
+        </option>
+      </select>
+    </div>
+  </div>
+  <div fxLayoutAlign="center center" *ngIf="selectedCategory">
+    <app-action-button
+      class="confirm-btn"
+      (clickButton)="takeClick()"
+      width="200"
+      textValue="Potwierdź"
+    ></app-action-button>
+  </div>
+</div>

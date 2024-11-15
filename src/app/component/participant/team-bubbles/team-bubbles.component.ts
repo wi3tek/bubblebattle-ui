@@ -15,7 +15,7 @@ export class TeamBubblesComponent {
   @Input() game!: Game;
   @Input() auctionMode!: boolean;
 
-  stakesTeam: TeamData = {
+  @Input() stakesTeam: TeamData = {
     teamColor: 'STAKES',
     bubbleAmount: 0,
     bubbleStakesAmount: 0,
@@ -23,4 +23,8 @@ export class TeamBubblesComponent {
     activeQuestion: null,
     highestStakes: false,
   };
+
+  ngOnInit() {
+    this.stakesTeam.bubbleAmount = this.game.bubbleStakes;
+  }
 }

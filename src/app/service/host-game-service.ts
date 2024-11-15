@@ -3,7 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, shareReplay } from 'rxjs';
 import { environment } from '../config/environment';
-import { Action, Game, PerformActionRequest } from '../model/game';
+import {
+  Action,
+  RaiseStakesRequest as RaiseStakesRequest,
+  Game,
+  PerformActionRequest,
+  TeamData,
+} from '../model/game';
 
 const baseEndpoint = '/host';
 
@@ -15,9 +21,9 @@ export class HostGameService {
 
   constructor(private http: HttpClient, private gameService: GameService) {}
 
-  changeStatus(gameId: string): Observable<void> {
+  raiseStakes(request: RaiseStakesRequest): Observable<void> {
     return this.http
-      .post<void>(`${this.baseUrl}/${gameId}`, null)
+      .post<void>(`${this.baseUrl}/raiseStakes`, request)
       .pipe(shareReplay());
   }
 

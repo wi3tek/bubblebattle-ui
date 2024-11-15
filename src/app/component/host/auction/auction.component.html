@@ -1,0 +1,48 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="center end"
+  fxLayoutGap="0"
+  style="margin-top: 30px"
+>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <div
+      *ngIf="
+        game.roundStage === 'AUCTION' || game.roundStage === 'AUCTION_COMPLETE'
+      "
+      class="auction-header"
+      style="letter-spacing: 30px"
+    >
+      LICYTACJA
+    </div>
+    <div fxLayout="row">
+      <div
+        *ngFor="let team of game?.teams"
+        fxLayout="row"
+        fxLayoutAlign="center start"
+        fxLayoutGap="1"
+        fxFlex="70"
+      >
+        <div *ngIf="team.active === true">
+          <app-auction-item
+            [team]="team"
+            [auctionStage]="'AUCTION' === game.roundStage"
+            [gameId]="gameId"
+            (stakesRaised)="stakesRaisedInfo()"
+            [highestBidAmount]="game.highestBidAmount"
+            [winnerColor]="
+              game.auctionWinner ? game.auctionWinner.teamColor : ''
+            "
+          ></app-auction-item>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="opacity: 0; margin-top: 1px" class="stakes-auction-header"></div>
+  <app-auction-item
+    [headerTitle]="'PULA'"
+    [team]="stakesTeam"
+    [auctionStage]="'AUCTION' === game.roundStage"
+    [gameStakes]="game.bubbleStakes"
+  ></app-auction-item>
+</div>

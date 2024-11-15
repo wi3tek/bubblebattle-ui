@@ -1,9 +1,102 @@
-<div fxLayout="row" class="content">
-  <div fxFlex="20" fxLayout="column" *ngFor="let action of actions">
-    <app-action-button
-      (clickButton)="performAction(action)"
-      [textValue]="action.description"
-    ></app-action-button>
+<div
+  fxLayout="row"
+  class="content"
+  fxLayoutAlign="space-around start"
+  fxLayoutGap="20"
+>
+  <div fxLayout="column">
+    <div *ngFor="let action of actions">
+      <div fxLayout="column">
+        <app-action-button
+          (clickButton)="performAction(action)"
+          [textValue]="action.description"
+        ></app-action-button>
+      </div>
+    </div>
+    <div
+      *ngIf="
+        game?.gameStage === 'REGULAR' &&
+        game?.roundStage === 'ROUND_SUMMARY' &&
+        game?.roundNumber !== 0
+      "
+    >
+      <app-action-button
+        (clickButton)="performAction(goToTheFinalAction)"
+        [textValue]="goToTheFinalAction.description"
+      ></app-action-button>
+    </div>
   </div>
-  <div fxFlex="70"></div>
+
+  <div fxLayoutAlign="center start" fxFlex="70">
+    <div fxLayout="column">
+      <div
+        fxLayoutAlign="center center"
+        class="content header stage-header"
+        style="font-weight: 700"
+      >
+        <span>
+          {{ prepareStageHeader() | uppercase }}: RUNDA
+          {{ game?.roundNumber }}</span
+        >
+      </div>
+      <div
+        *ngIf="
+          winnerColor &&
+          game?.roundStage !== 'ROUND_SUMMARY' &&
+          game?.roundStage !== 'AFTER_ANSWER'
+        "
+        fxLayoutAlign="center center"
+        class="content-header winners-header"
+      >
+        <span> ZWYCIĘZCY LICYTACJI:</span>
+        <span [class]="winnerColor">{{ prepareWinnerTeamColor() }}</span>
+      </div>
+      <div
+        *ngIf="game?.currentCategory"
+        fxLayoutAlign="center center"
+        class="content-header category-header"
+      >
+        <!-- <span>KATEGORIA:</span> -->
+        <span class="category">{{ game?.currentCategory }}</span>
+      </div>
+      <div *ngIf="sellAnswersMode">
+        <app-sell-answers
+          (cancelBtn)="cancelSelling()"
+          (confirmBtn)="sellAnswer($event)"
+        ></app-sell-answers>
+      </div>
+
+      <div
+        fxFlex="100"
+        *ngIf="game && game.auctionWinner && game.auctionWinner.activeQuestion"
+      >
+        <app-host-question
+          fxFlex="100"
+          [questionWinner]="game.auctionWinner"
+          [stakes]="game.bubbleStakes"
+          [roundNumber]="game.roundNumber"
+          [roundStage]="game.roundStage"
+        ></app-host-question>
+      </div>
+      <div *ngIf="givingAnswerMode">
+        <app-giving-answer
+          (answeredCorrect)="answerTheQuestion($event)"
+        ></app-giving-answer>
+      </div>
+      <div>
+        <app-auction
+          *ngIf="game"
+          [game]="game"
+          [gameId]="gameId"
+          (stakesRaised)="takeStakesRaisedInfo()"
+        ></app-auction>
+      </div>
+      <div *ngIf="categorySelectionMode">
+        <app-category-selection
+          [categories]="categories"
+          (chosenCategory)="takeChosenCategory($event)"
+        ></app-category-selection>
+      </div>
+    </div>
+  </div>
 </div>

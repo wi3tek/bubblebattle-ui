@@ -9,6 +9,7 @@
     <tr>
       <th>Data utworzenia</th>
       <th>Nazwa</th>
+      <th>Etap gry</th>
       <th>
         <div
           class="actions"
@@ -32,10 +33,11 @@
     <tr *ngFor="let game of games">
       <td class="game-data">{{ game.date | date : "yyyy-MM-dd HH:mm" }}</td>
       <td class="game-data">{{ game.name }}</td>
+      <td>{{ game.roundDescription }}</td>
       <td>
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5">
           <div>
-            <a [routerLink]="['/host/', game.gameId]" target="_blank">
+            <a [routerLink]="['/host/', game.gameId]">
               <app-action-button
                 [textValue]="'prowadzący'"
                 [width]="'200'"
@@ -43,7 +45,7 @@
             </a>
           </div>
           <div>
-            <a [routerLink]="['/participant/', game.gameId]" target="_blank">
+            <a [routerLink]="['/participant/', game.gameId]">
               <app-action-button
                 [textValue]="'uczestnik'"
                 [width]="'200'"

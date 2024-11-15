@@ -8,6 +8,11 @@ export interface Game {
   teams: TeamData[];
   bubbleStakes: number;
   hostActions: HostAction[];
+  questionList: QuestionData[];
+  categoryList: CategoryData[];
+  highestBidAmount: number;
+  auctionWinner: TeamData;
+  currentCategory: string;
 }
 
 export interface TeamData {
@@ -22,12 +27,17 @@ export interface TeamData {
 export interface QuestionData {
   value: string;
   category: string;
-  answers: AnsertData[];
+  answers: AnswerData[];
 }
 
-export interface AnsertData {
+export interface CategoryData {
   value: string;
-  isCorrect: boolean;
+  count: number;
+}
+
+export interface AnswerData {
+  value: string;
+  correct: boolean;
 }
 
 export interface GetGamesResponse {
@@ -38,12 +48,14 @@ export interface SimpleGame {
   gameId: string;
   name: string;
   date: Date;
+  roundDescription: string;
 }
 
-export interface ChangeStatusRequest {
+export interface RaiseStakesRequest {
   gameId: string;
-  team: string;
+  teamColor: string;
   bubblesAmount: number;
+  finalBid: boolean;
 }
 
 export interface HostAction {
@@ -52,16 +64,16 @@ export interface HostAction {
 }
 
 export enum Action {
-  START_GAME,
-  CHOOSE_CATEGORY,
-  START_AUCTION,
-  FINISH_AUCTION,
-  RANDOM_QUESTION,
-  SHOW_QUESTION,
-  SELL_ANSWERS,
-  ANSWER_THE_QUESTION,
-  FINISH_ROUND,
-  GO_TO_THE_FINAL,
+  START_GAME = 'START_GAME',
+  CHOOSE_CATEGORY = 'CHOOSE_CATEGORY',
+  START_AUCTION = 'START_AUCTION',
+  FINISH_AUCTION = 'FINISH_AUCTION',
+  RANDOM_QUESTION = 'RANDOM_QUESTION',
+  SHOW_QUESTION = 'SHOW_QUESTION',
+  SELL_ANSWERS = 'SELL_ANSWERS',
+  ANSWER_THE_QUESTION = 'ANSWER_THE_QUESTION',
+  FINISH_ROUND = 'FINISH_ROUND',
+  GO_TO_THE_FINAL = 'GO_TO_THE_FINAL',
 }
 
 export interface CreateGameRequest {
@@ -71,4 +83,8 @@ export interface CreateGameRequest {
 export interface PerformActionRequest {
   gameId: string;
   action: Action;
+  category: string | null;
+  price: number | null;
+  teamColor: string | null;
+  answer: string | null;
 }

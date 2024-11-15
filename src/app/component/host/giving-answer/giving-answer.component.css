@@ -1,0 +1,23 @@
+.wrong {
+  background: radial-gradient(red, darkred);
+  border-radius: 10px;
+}
+
+.correct {
+  background: radial-gradient(green, darkgreen);
+  border-radius: 10px;
+}
+
+.correct::after {
+  background: radial-gradient(green, darkgreen);
+}
+
+.header {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-size: 30px;
+  margin: 10px;
+  border-bottom: 1px white solid;
+  font-weight: 600;
+  padding: 10px;
+}
