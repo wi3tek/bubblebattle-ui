@@ -1,0 +1,40 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <span class="header">Skoryguj bombelki</span>
+  <div fxLayoutAlign="center center" fxLayout="column">
+    <div class="select">
+      <select
+        [(ngModel)]="selectedTeamColor"
+        name="format"
+        id="format"
+        class="selector"
+      >
+        <option
+          *ngFor="let team of teams"
+          [value]="team.teamColor"
+          [ngValue]="team.teamColor"
+          fxFlex="100"
+          style="letter-spacing: 10px"
+        >
+          <div
+            fxFlex="100"
+            class="category-option"
+            fxLayout="row"
+            fxLayoutAlign="space-between center"
+            fxLayoutGap="100px"
+            (click)="chooseTeamColor(team.teamColor)"
+          ></div>
+          <div fxFlex="50" (click)="chooseTeamColor(team.teamColor)">
+            {{ prepareTeamColor(team.teamColor) }}
+          </div>
+        </option>
+        <option [value]="'STAKES'">PULA</option>
+      </select>
+    </div>
+  </div>
+  <app-custom-input
+    [buttonValue]="'Zatwierdź'"
+    [placeholder]="'Wpisz kwotę'"
+    (cancelBtn)="cancel()"
+    (confirmBtn)="confirm($event)"
+  ></app-custom-input>
+</div>

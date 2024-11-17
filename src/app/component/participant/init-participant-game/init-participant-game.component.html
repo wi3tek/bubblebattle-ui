@@ -29,7 +29,6 @@
 <app-team-bubbles
   *ngIf="
     (roundStage === 'ROUND_SUMMARY' && game) ||
-    (roundStage === 'AFTER_ANSWER' && game) ||
     (roundStage === 'CATEGORY_SELECTION' && game)
   "
   [game]="game"
@@ -48,4 +47,11 @@
   [roundNumber]="game.roundNumber"
   [roundStage]="game.roundStage"
 ></app-participant-question>
-<app-bubbles-counter></app-bubbles-counter>
+<div fxLayoutAlign="center center">
+  <app-bubbles-counter
+    *ngIf="game && game.roundStage === 'AFTER_ANSWER'"
+    [stakesAmount]="game.bubbleStakes"
+    [answeredeCorrect]="isAnsweredCorrect()"
+    [teamColor]="getAuctionWinnerColor()"
+  ></app-bubbles-counter>
+</div>

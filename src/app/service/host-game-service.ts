@@ -9,6 +9,7 @@ import {
   Game,
   PerformActionRequest,
   TeamData,
+  ChangeBubblesAmountRequest,
 } from '../model/game';
 
 const baseEndpoint = '/host';
@@ -37,5 +38,11 @@ export class HostGameService {
     return this.http
       .post<Game>(`${this.baseUrl}/performAction`, request)
       .pipe(catchError(this.gameService.handleError));
+  }
+
+  correctBubbles(request: ChangeBubblesAmountRequest): Observable<void> {
+    return this.http
+      .post<void>(`${this.baseUrl}/correctBubbles`, request)
+      .pipe(shareReplay());
   }
 }

@@ -28,6 +28,7 @@ export interface QuestionData {
   value: string;
   category: string;
   answers: AnswerData[];
+  answeredCorrect: boolean;
 }
 
 export interface CategoryData {
@@ -87,4 +88,10 @@ export interface PerformActionRequest {
   price: number | null;
   teamColor: string | null;
   answer: string | null;
+}
+
+export interface ChangeBubblesAmountRequest {
+  gameId: string;
+  teamColor: string;
+  bubblesAmount: number;
 }

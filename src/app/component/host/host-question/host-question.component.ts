@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { TeamData, AnswerData } from 'src/app/model/game';
+import { TimerComponent } from '../../timer/timer.component';
 
 @Component({
   selector: 'app-host-question',
@@ -15,7 +16,7 @@ export class HostQuestionComponent {
   @Input() stakes!: number;
   @Input() questionWinner!: TeamData;
   @Input() roundNumber!: number;
-
+  @ViewChild('timerRef') timerRef!: TimerComponent;
   answers: AnswerData[] = [];
 
   ngOnInit() {
@@ -24,5 +25,9 @@ export class HostQuestionComponent {
     if (this.questionWinner.activeQuestion) {
       this.answers = this.questionWinner.activeQuestion.answers;
     }
+  }
+
+  startClock() {
+    this.timerRef.start(120);
   }
 }

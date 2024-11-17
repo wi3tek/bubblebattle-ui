@@ -19,11 +19,11 @@
         *ngFor="let team of game?.teams"
         fxLayout="row"
         fxLayoutAlign="center start"
-        fxLayoutGap="1"
-        fxFlex="70"
+        fxFlex="100"
       >
-        <div *ngIf="team.active === true">
+        <div>
           <app-auction-item
+            style="width: 100%"
             [team]="team"
             [auctionStage]="'AUCTION' === game.roundStage"
             [gameId]="gameId"

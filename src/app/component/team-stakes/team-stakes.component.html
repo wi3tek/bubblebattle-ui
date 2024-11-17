@@ -8,7 +8,7 @@
       team.highestStakes
     "
   >
-    {{ team.bubbleStakesAmount | spaceForThousands }}
+    {{ team.active ? (team.bubbleStakesAmount | spaceForThousands) : "" }}
   </div>
 
   <div fxLayout="column" [class]="team.teamColor">
@@ -18,8 +18,10 @@
     <div class="stakes-content dotted">
       {{
         team.teamColor === "STAKES"
-          ? gameStakes
-          : (team.bubbleAmount | spaceForThousands)
+          ? (gameStakes | spaceForThousands)
+          : team.active
+          ? (team.bubbleAmount | spaceForThousands)
+          : ""
       }}
     </div>
   </div>

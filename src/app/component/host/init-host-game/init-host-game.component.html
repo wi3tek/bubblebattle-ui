@@ -19,12 +19,12 @@
         game?.roundStage === 'ROUND_SUMMARY' &&
         game?.roundNumber !== 0
       "
-    >
-      <app-action-button
-        (clickButton)="performAction(goToTheFinalAction)"
-        [textValue]="goToTheFinalAction.description"
-      ></app-action-button>
-    </div>
+    ></div>
+    <app-action-button
+      *ngIf="!changeBubblesAmountMode"
+      (clickButton)="enableChangeBubblesAmountMode()"
+      [textValue]="'Skoryguj bombelki'"
+    ></app-action-button>
   </div>
 
   <div fxLayoutAlign="center start" fxFlex="70">
@@ -59,6 +59,13 @@
         <!-- <span>KATEGORIA:</span> -->
         <span class="category">{{ game?.currentCategory }}</span>
       </div>
+      <div *ngIf="game && changeBubblesAmountMode">
+        <app-change-bubbles-amount
+          (cancelBtn)="cancelBubblesChange()"
+          (confirmBtn)="changeBubblesAmount($event)"
+          [teams]="game.teams"
+        ></app-change-bubbles-amount>
+      </div>
       <div *ngIf="sellAnswersMode">
         <app-sell-answers
           (cancelBtn)="cancelSelling()"
@@ -68,7 +75,12 @@
 
       <div
         fxFlex="100"
-        *ngIf="game && game.auctionWinner && game.auctionWinner.activeQuestion"
+        *ngIf="
+          game &&
+          game.auctionWinner &&
+          game.auctionWinner.activeQuestion &&
+          game.roundStage != 'AFTER_ANSWER'
+        "
       >
         <app-host-question
           fxFlex="100"
@@ -76,7 +88,16 @@
           [stakes]="game.bubbleStakes"
           [roundNumber]="game.roundNumber"
           [roundStage]="game.roundStage"
+          #hostQuestionRef
         ></app-host-question>
+      </div>
+      <div *ngIf="game && game.roundStage === 'AFTER_ANSWER'">
+        <app-bubbles-counter
+          *ngIf="game && game.roundStage === 'AFTER_ANSWER'"
+          [stakesAmount]="game.bubbleStakes"
+          [answeredeCorrect]="isAnsweredCorrect()"
+          [teamColor]="getAuctionWinnerColor()"
+        ></app-bubbles-counter>
       </div>
       <div *ngIf="givingAnswerMode">
         <app-giving-answer

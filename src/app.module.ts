@@ -24,6 +24,7 @@ import { SellAnswersComponent } from './app/component/host/sell-answers/sell-ans
 import { CustomInputComponent } from './app/component/common/custom-input/custom-input.component';
 import { GivingAnswerComponent } from './app/component/host/giving-answer/giving-answer.component';
 import { BubblesCounterComponent } from './app/component/common/bubbles-counter/bubbles-counter.component';
+import { ChangeBubblesAmountComponent } from './app/component/host/change-bubbles-amount/change-bubbles-amount.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { BubblesCounterComponent } from './app/component/common/bubbles-counter/
     CustomInputComponent,
     GivingAnswerComponent,
     BubblesCounterComponent,
+    ChangeBubblesAmountComponent,
   ],
   imports: [
     BrowserModule,

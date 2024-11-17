@@ -1,1 +1,8 @@
-<p>bubbles-counter works!</p>
+<div class="content">
+  <div fxLayout="column" [class]="teamColor">
+    <div [class]="'stakes-header'">WYGRANA</div>
+    <div class="stakes-content dotted">
+      {{ prepareWonAmount() | spaceForThousands }}
+    </div>
+  </div>
+</div>

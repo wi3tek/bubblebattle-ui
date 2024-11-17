@@ -27,7 +27,6 @@ export class AuctionComponent {
 
   ngOnInit() {
     this.stakesTeam.bubbleAmount = this.game.bubbleStakes;
-    this.winnerColor = this.game.auctionWinner.teamColor;
   }
 
   stakesRaisedInfo() {

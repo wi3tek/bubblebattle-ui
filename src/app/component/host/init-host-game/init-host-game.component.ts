@@ -1,10 +1,12 @@
+import { HostQuestionComponent } from './../host-question/host-question.component';
 import {
   Action,
   CategoryData,
+  ChangeBubblesAmountRequest,
   HostAction,
   PerformActionRequest,
 } from './../../../model/game';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Game } from 'src/app/model/game';
 import { HostGameService } from 'src/app/service/host-game-service';
@@ -36,12 +38,11 @@ export class InitHostGameComponent {
   sellAnswersMode: boolean = false;
   categorySelectionMode: boolean = false;
   givingAnswerMode: boolean = false;
-  goToTheFinalAction: HostAction = {
-    action: Action.GO_TO_THE_FINAL,
-    description: 'Przejdź do finału',
-  };
   actions: HostAction[] = [];
   categories: CategoryData[] = [];
+  changeBubblesAmountMode: boolean = false;
+
+  @ViewChild('hostQuestionRef') hostQuestionRef!: HostQuestionComponent;
 
   constructor(private gameService: HostGameService) {
     this.gameId = this.route.snapshot.params['gameId'];
@@ -62,6 +63,7 @@ export class InitHostGameComponent {
   performAction(hostAction: HostAction) {
     if (hostAction.action === Action.SELL_ANSWERS) {
       this.sellAnswersMode = true;
+      this.changeBubblesAmountMode = false;
       return;
     }
 
@@ -177,5 +179,47 @@ export class InitHostGameComponent {
       : this.game?.gameStage === 'FINAL'
       ? 'FINAŁ'
       : '';
+  }
+
+  enableChangeBubblesAmountMode() {
+    this.sellAnswersMode = false;
+    this.changeBubblesAmountMode = true;
+    this.categorySelectionMode = false;
+  }
+
+  clockStart() {
+    this.hostQuestionRef.startClock();
+  }
+
+  cancelBubblesChange() {
+    this.changeBubblesAmountMode = false;
+  }
+
+  changeBubblesAmount(request: ChangeBubblesAmountRequest) {
+    if (this.game) {
+      request.gameId = this.game?.gameId;
+      console.log('CORRECT BUBBLES REQUEST ' + request);
+
+      this.gameService.correctBubbles(request).subscribe({
+        next: () => {
+          this.initGame();
+          this.changeBubblesAmountMode = false;
+        },
+      });
+    }
+  }
+
+  getAuctionWinnerColor(): string {
+    if (this.game) {
+      return this.game.auctionWinner.teamColor;
+    }
+
+    return '';
+  }
+  isAnsweredCorrect(): boolean {
+    if (this.game && this.game.auctionWinner.activeQuestion) {
+      return this.game.auctionWinner.activeQuestion.answeredCorrect;
+    }
+    return false;
   }
 }

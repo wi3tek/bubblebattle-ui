@@ -7,18 +7,23 @@ import { interval, Subject, takeUntil } from 'rxjs';
   styleUrls: ['./timer.component.css'],
 })
 export class TimerComponent {
-  @Input() seconds!: number;
+  @Input() canStart!: boolean;
   @Output() secondsAgo = new EventEmitter<number>();
 
   private intervalId: any;
   public isRunning: boolean = false;
-  counter: number = 60000;
+  counter: number = 0;
   stopTimer = new Subject<void>();
 
   public start(seconds: number) {
+    console.log('STARTED TIMER FROM TimerComponent');
+
     this.counter = seconds * 1000;
 
-    if (!this.isRunning && this.counter !== 0) {
+    console.warn(
+      `isRunning=${this.isRunning}, counter=${this.counter}, seconds=${seconds}`
+    );
+    if (!this.isRunning) {
       this.isRunning = true;
       this.intervalId = setInterval(() => {}, 1000);
 
@@ -64,6 +69,6 @@ export class TimerComponent {
   }
 
   ngOnInit() {
-    this.start(this.seconds);
+    this.start(60);
   }
 }

@@ -40,6 +40,7 @@ export class ParticipantQuestionComponent {
   }
 
   startTimer() {
+    console.log('STARTED TIMER FROM ParticipantQuestionComponent');
     this.timerRef.start(60);
   }
 }

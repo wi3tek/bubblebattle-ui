@@ -9,7 +9,7 @@
       team.highestStakes
     "
   >
-    {{ team.bubbleStakesAmount | spaceForThousands }}
+    {{ team.active ? (team.bubbleStakesAmount | spaceForThousands) : "" }}
   </div>
 
   <div fxLayout="column" [class]="team.teamColor">
@@ -20,14 +20,16 @@
       {{
         team.teamColor === "STAKES"
           ? (gameStakes | spaceForThousands)
-          : (team.bubbleAmount | spaceForThousands)
+          : team.active
+          ? (team.bubbleAmount | spaceForThousands)
+          : ""
       }}
     </div>
   </div>
 </div>
 <div
   [class]="team.teamColor === 'STAKES' ? 'stakes-bid' : ''"
-  *ngIf="auctionStage"
+  *ngIf="auctionStage && team.active"
   fxLayoutAlign="center center"
 >
   <div fxLayout="column">
