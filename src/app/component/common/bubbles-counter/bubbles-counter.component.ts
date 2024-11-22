@@ -1,21 +1,27 @@
 import { TeamData } from './../../../model/game';
 import { Component, Input } from '@angular/core';
 import { Subject, interval, take, takeUntil, takeWhile } from 'rxjs';
+import { CommonFunctionsComponent } from '../common-functions/common-functions.component';
+import { Router } from '@angular/router';
 
-const duratiuonMs: number = 1500; // czas odliczania w milisekundach
+const duratiuonMs: number = 1000; // czas odliczania w milisekundach
 
 @Component({
   selector: 'app-bubbles-counter',
   templateUrl: './bubbles-counter.component.html',
   styleUrls: ['./bubbles-counter.component.css'],
 })
-export class BubblesCounterComponent {
+export class BubblesCounterComponent extends CommonFunctionsComponent {
   @Input() stakesAmount!: number;
   @Input() teamColor!: string;
   @Input() answeredeCorrect!: boolean;
 
   counterStart: number = 0;
   counterStop: number = 0;
+
+  constructor(router: Router) {
+    super(router);
+  }
 
   stopTimer = new Subject<void>();
 
@@ -43,9 +49,12 @@ export class BubblesCounterComponent {
     console.log('LOSE START');
     var counterValue: number = Math.abs(this.counterStart - this.counterStop);
     interval(duratiuonMs / (counterValue / 100))
-      .pipe(takeWhile((x) => this.counterStart >= x - 100))
+      .pipe(takeWhile((x) => this.counterStart > x - 100))
       .subscribe(() => {
         this.counterStart = this.counterStart - 100;
+        if (this.counterStart < 0) {
+          this.counterStart = 0;
+        }
       });
   }
 
@@ -69,9 +78,10 @@ export class BubblesCounterComponent {
     return this.counterStart;
   }
 
-  // ngOnInit() {
-  //   this.start();
-  // }
+  override ngOnInit() {
+    this.start();
+  }
+
   public start() {
     this.isRunning = false;
 
@@ -88,5 +98,9 @@ export class BubblesCounterComponent {
 
   prepareWonAmount(): number {
     return this.answeredeCorrect ? this.stakesAmount : 0;
+  }
+
+  reload() {
+    this.reloadComponent(true);
   }
 }

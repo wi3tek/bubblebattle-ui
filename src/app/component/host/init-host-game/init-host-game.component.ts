@@ -5,24 +5,13 @@ import {
   ChangeBubblesAmountRequest,
   HostAction,
   PerformActionRequest,
+  ReverseRestoreAuctionRequest,
+  TeamData,
 } from './../../../model/game';
 import { Component, inject, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Game } from 'src/app/model/game';
 import { HostGameService } from 'src/app/service/host-game-service';
-
-const actionMap: { [key in Action]: string } = {
-  [Action.START_GAME]: 'START_GAME',
-  [Action.CHOOSE_CATEGORY]: '',
-  [Action.START_AUCTION]: '',
-  [Action.FINISH_AUCTION]: '',
-  [Action.RANDOM_QUESTION]: '',
-  [Action.SHOW_QUESTION]: '',
-  [Action.SELL_ANSWERS]: '',
-  [Action.ANSWER_THE_QUESTION]: '',
-  [Action.FINISH_ROUND]: '',
-  [Action.GO_TO_THE_FINAL]: '',
-};
 
 @Component({
   selector: 'app-init-host-game',
@@ -41,6 +30,9 @@ export class InitHostGameComponent {
   actions: HostAction[] = [];
   categories: CategoryData[] = [];
   changeBubblesAmountMode: boolean = false;
+  possibleForward: boolean = false;
+  possibleBackward: boolean = false;
+  // auctionWinner: TeamData | null = null;
 
   @ViewChild('hostQuestionRef') hostQuestionRef!: HostQuestionComponent;
 
@@ -60,10 +52,29 @@ export class InitHostGameComponent {
     });
   }
 
+  startStopQuestionTimer(seconds: number | null, start: boolean): void {
+    var request: PerformActionRequest = {
+      gameId: this.gameId,
+      action: Action.START_STOP_QUESTION_TIMER,
+      category: null,
+      price: null,
+      teamColor: null,
+      answer: null,
+      secondsRemaining: seconds,
+      start: start,
+    };
+
+    this.performActionCall(request);
+
+    console.log('seconds timer', request);
+  }
+
   performAction(hostAction: HostAction) {
     if (hostAction.action === Action.SELL_ANSWERS) {
       this.sellAnswersMode = true;
       this.changeBubblesAmountMode = false;
+      this.hostQuestionRef.timerRef.stop();
+      this.startStopQuestionTimer(this.hostQuestionRef.secondsAgo, false);
       return;
     }
 
@@ -73,6 +84,7 @@ export class InitHostGameComponent {
     }
 
     if (hostAction.action === Action.ANSWER_THE_QUESTION) {
+      this.startStopQuestionTimer(0, false);
       this.givingAnswerMode = true;
       return;
     }
@@ -84,6 +96,8 @@ export class InitHostGameComponent {
       price: null,
       teamColor: null,
       answer: null,
+      start: null,
+      secondsRemaining: null,
     };
 
     this.performActionCall(request);
@@ -96,6 +110,21 @@ export class InitHostGameComponent {
     });
   }
 
+  initBubbles() {
+    var request: PerformActionRequest = {
+      gameId: this.gameId,
+      action: Action.INIT_BUBBLES,
+      category: null,
+      price: null,
+      teamColor: null,
+      answer: null,
+      start: null,
+      secondsRemaining: null,
+    };
+
+    this.performActionCall(request);
+  }
+
   updateContent(response: Game): void {
     this.game = response;
     this.actions = this.game.hostActions;
@@ -104,6 +133,23 @@ export class InitHostGameComponent {
       this.categories = this.game.categoryList;
       this.bubbleStakes = this.game.bubbleStakes;
       this.winnerColor = this.game.auctionWinner?.teamColor;
+      this.possibleBackward =
+        this.game.roundStage === 'AUCTION' && this.game.possibleBackward;
+      this.possibleForward =
+        this.game.roundStage === 'AUCTION' && this.game.possibleForward;
+
+      if (
+        this.game.roundStage === 'QUESTION' ||
+        this.game.roundStage === 'QUESTION_WITH_PROMPTS'
+      ) {
+        var winner = this.game.auctionWinner;
+        let question = winner.activeQuestion;
+        if (question && question.startOnInit) {
+          this.hostQuestionRef.startClock(question.remainingTimeSec);
+        } else {
+          this.hostQuestionRef.timerRef.stop();
+        }
+      }
     }
   }
 
@@ -117,6 +163,8 @@ export class InitHostGameComponent {
       price: null,
       teamColor: null,
       answer: null,
+      start: null,
+      secondsRemaining: null,
     };
 
     this.performActionCall(request);
@@ -125,7 +173,6 @@ export class InitHostGameComponent {
 
   takeStakesRaisedInfo() {
     console.log('PODBITO STAWKE');
-
     this.initGame();
   }
 
@@ -150,6 +197,8 @@ export class InitHostGameComponent {
       price: price,
       teamColor: this.winnerColor,
       answer: null,
+      start: null,
+      secondsRemaining: null,
     };
 
     this.performActionCall(request);
@@ -157,6 +206,13 @@ export class InitHostGameComponent {
   }
   cancelSelling() {
     this.sellAnswersMode = false;
+
+    var winner = this.game?.auctionWinner;
+    var time: number | null =
+      winner && winner.activeQuestion
+        ? winner.activeQuestion.remainingTimeSec
+        : 0;
+    this.startStopQuestionTimer(time, true);
   }
 
   answerTheQuestion(isCorrect: boolean) {
@@ -167,6 +223,8 @@ export class InitHostGameComponent {
       price: null,
       teamColor: this.winnerColor,
       answer: isCorrect ? 'CORRECT' : 'WRONG',
+      start: null,
+      secondsRemaining: null,
     };
 
     this.performActionCall(request);
@@ -175,9 +233,11 @@ export class InitHostGameComponent {
 
   prepareStageHeader() {
     return this.game?.gameStage === 'REGULAR'
-      ? 'Pierwszy etap'
+      ? 'Pierwszy etap: RUNDA ' + this.game.roundNumber
       : this.game?.gameStage === 'FINAL'
-      ? 'FINAŁ'
+      ? this.game.roundNumber > 5
+        ? 'KONIEC GRY'
+        : 'FINAŁ: RUNDA ' + this.game.roundNumber
       : '';
   }
 
@@ -185,10 +245,6 @@ export class InitHostGameComponent {
     this.sellAnswersMode = false;
     this.changeBubblesAmountMode = true;
     this.categorySelectionMode = false;
-  }
-
-  clockStart() {
-    this.hostQuestionRef.startClock();
   }
 
   cancelBubblesChange() {
@@ -221,5 +277,19 @@ export class InitHostGameComponent {
       return this.game.auctionWinner.activeQuestion.answeredCorrect;
     }
     return false;
+  }
+
+  auctionHistoryHasChanged(option: string) {
+    var request: ReverseRestoreAuctionRequest = {
+      gameId: this.gameId,
+      option: option,
+    };
+
+    this.gameService.reverseRestoreAuction(request).subscribe({
+      complete: () => {
+        console.log('Reversed or restored auction -> update auction history');
+        this.initGame();
+      },
+    });
   }
 }

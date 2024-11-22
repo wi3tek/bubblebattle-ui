@@ -13,6 +13,9 @@ export interface Game {
   highestBidAmount: number;
   auctionWinner: TeamData;
   currentCategory: string;
+  possibleForward: boolean;
+  possibleBackward: boolean;
+  moneyUp: boolean;
 }
 
 export interface TeamData {
@@ -29,6 +32,10 @@ export interface QuestionData {
   category: string;
   answers: AnswerData[];
   answeredCorrect: boolean;
+  hostFacts: string | null;
+  imageUrl: string | null;
+  startOnInit: boolean;
+  remainingTimeSec: number;
 }
 
 export interface CategoryData {
@@ -66,6 +73,7 @@ export interface HostAction {
 
 export enum Action {
   START_GAME = 'START_GAME',
+  INIT_BUBBLES = 'INIT_BUBBLES',
   CHOOSE_CATEGORY = 'CHOOSE_CATEGORY',
   START_AUCTION = 'START_AUCTION',
   FINISH_AUCTION = 'FINISH_AUCTION',
@@ -75,6 +83,7 @@ export enum Action {
   ANSWER_THE_QUESTION = 'ANSWER_THE_QUESTION',
   FINISH_ROUND = 'FINISH_ROUND',
   GO_TO_THE_FINAL = 'GO_TO_THE_FINAL',
+  START_STOP_QUESTION_TIMER = 'START_STOP_QUESTION_TIMER',
 }
 
 export interface CreateGameRequest {
@@ -88,10 +97,17 @@ export interface PerformActionRequest {
   price: number | null;
   teamColor: string | null;
   answer: string | null;
+  secondsRemaining: number | null;
+  start: boolean | null;
 }
 
 export interface ChangeBubblesAmountRequest {
   gameId: string;
   teamColor: string;
   bubblesAmount: number;
+}
+
+export interface ReverseRestoreAuctionRequest {
+  gameId: string;
+  option: string;
 }

@@ -12,6 +12,7 @@ export class ActionButtonComponent {
   @Input() icon: string = '';
   @Input() height: string = '30';
   @Input() fontSize: string = '20';
+  @Input() padding: string = '20';
 
   emit(): void {
     this.clickButton.emit();

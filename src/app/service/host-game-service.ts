@@ -10,6 +10,7 @@ import {
   PerformActionRequest,
   TeamData,
   ChangeBubblesAmountRequest,
+  ReverseRestoreAuctionRequest,
 } from '../model/game';
 
 const baseEndpoint = '/host';
@@ -43,6 +44,14 @@ export class HostGameService {
   correctBubbles(request: ChangeBubblesAmountRequest): Observable<void> {
     return this.http
       .post<void>(`${this.baseUrl}/correctBubbles`, request)
+      .pipe(shareReplay());
+  }
+
+  reverseRestoreAuction(
+    request: ReverseRestoreAuctionRequest
+  ): Observable<void> {
+    return this.http
+      .post<void>(`${this.baseUrl}/reverseRestoreAuction`, request)
       .pipe(shareReplay());
   }
 }

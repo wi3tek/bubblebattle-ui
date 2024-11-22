@@ -10,6 +10,15 @@
         <app-action-button
           (clickButton)="performAction(action)"
           [textValue]="action.description"
+          *ngIf="
+            game &&
+            !(action.action === 'GO_TO_THE_FINAL' && game.roundNumber < 4) &&
+            !(
+              game.roundNumber === 0 &&
+              game.roundStage === 'ROUND_SUMMARY' &&
+              action.action === 'CHOOSE_CATEGORY'
+            )
+          "
         ></app-action-button>
       </div>
     </div>
@@ -21,7 +30,16 @@
       "
     ></div>
     <app-action-button
-      *ngIf="!changeBubblesAmountMode"
+      *ngIf="
+        game && game.roundStage === 'ROUND_SUMMARY' && game.roundNumber === 0
+      "
+      (clickButton)="initBubbles()"
+      [textValue]="'Rozdaj bombelki'"
+    ></app-action-button>
+    <app-action-button
+      *ngIf="
+        !changeBubblesAmountMode && game && game.roundStage !== 'GAME_FINISHED'
+      "
       (clickButton)="enableChangeBubblesAmountMode()"
       [textValue]="'Skoryguj bombelki'"
     ></app-action-button>
@@ -34,10 +52,7 @@
         class="content header stage-header"
         style="font-weight: 700"
       >
-        <span>
-          {{ prepareStageHeader() | uppercase }}: RUNDA
-          {{ game?.roundNumber }}</span
-        >
+        <span> {{ prepareStageHeader() | uppercase }}</span>
       </div>
       <div
         *ngIf="
@@ -83,6 +98,7 @@
         "
       >
         <app-host-question
+          style="margin-top: 10px"
           fxFlex="100"
           [questionWinner]="game.auctionWinner"
           [stakes]="game.bubbleStakes"
@@ -110,6 +126,9 @@
           [game]="game"
           [gameId]="gameId"
           (stakesRaised)="takeStakesRaisedInfo()"
+          [possibleForward]="possibleForward"
+          [possibleBackward]="possibleBackward"
+          (auctionHistoryChange)="auctionHistoryHasChanged($event)"
         ></app-auction>
       </div>
       <div *ngIf="categorySelectionMode">

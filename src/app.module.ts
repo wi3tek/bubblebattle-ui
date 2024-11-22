@@ -25,6 +25,10 @@ import { CustomInputComponent } from './app/component/common/custom-input/custom
 import { GivingAnswerComponent } from './app/component/host/giving-answer/giving-answer.component';
 import { BubblesCounterComponent } from './app/component/common/bubbles-counter/bubbles-counter.component';
 import { ChangeBubblesAmountComponent } from './app/component/host/change-bubbles-amount/change-bubbles-amount.component';
+import { GameTitleComponent } from './app/component/common/game-title/game-title.component';
+import { CommonFunctionsComponent } from './app/component/common/common-functions/common-functions.component';
+import { EndGameComponent } from './app/component/end-game/end-game.component';
+import { ConfirmDialogComponent } from './app/component/common/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +52,10 @@ import { ChangeBubblesAmountComponent } from './app/component/host/change-bubble
     GivingAnswerComponent,
     BubblesCounterComponent,
     ChangeBubblesAmountComponent,
+    GameTitleComponent,
+    CommonFunctionsComponent,
+    EndGameComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

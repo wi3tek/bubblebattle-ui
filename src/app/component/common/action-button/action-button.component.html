@@ -1,7 +1,15 @@
 <div
   class="action-button"
   [style]="
-    'width:' + width + 'px; height: ' + height + 'px; font-size:' + fontSize
+    'width:' +
+    width +
+    'px; height: ' +
+    20 +
+    'px; font-size:' +
+    fontSize +
+    'px; padding: ' +
+    padding +
+    'px;'
   "
   (click)="clickButton.emit()"
 >

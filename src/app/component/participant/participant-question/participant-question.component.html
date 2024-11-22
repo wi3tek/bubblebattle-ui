@@ -1,6 +1,19 @@
 <div class="content" fxLayout="column" fxLayoutGap="10">
   <div fxFlex="100" fxLayoutAlign="end end">
-    <app-timer #timerRef [canStart]="true"></app-timer>
+    <app-timer
+      #timerRef
+      [startOnInit]="canStartTimer()"
+      [audioEnabled]="
+        questionWinner.activeQuestion
+          ? questionWinner.activeQuestion.remainingTimeSec > 0
+          : false
+      "
+      [seconds]="
+        questionWinner.activeQuestion
+          ? questionWinner.activeQuestion.remainingTimeSec
+          : 0
+      "
+    ></app-timer>
   </div>
   <div fxFlex="100" class="question" fxLayout="column">
     <div class="question-header">
@@ -15,8 +28,22 @@
     </div>
     <div [class]="'question-content ' + questionWinner.teamColor">
       <div fxLayout="column">
-        <div class="question-value">
-          {{ questionWinner.activeQuestion?.value }}
+        <div
+          class="question-value"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+        >
+          <div>{{ questionWinner.activeQuestion?.value }}</div>
+          <div *ngIf="canDisplayImage()">
+            <img
+              class="question-img"
+              [src]="
+                './../../../../assets/question-data/' +
+                questionWinner.activeQuestion?.imageUrl
+              "
+              alt=""
+            />
+          </div>
         </div>
         <div
           class="question-answers"

@@ -1,57 +1,79 @@
-<div
-  *ngIf="
-    (game?.currentCategory && roundStage === 'BEFORE_QUESTION') ||
-    (game?.currentCategory && roundStage === 'QUESTION') ||
-    (game?.currentCategory && roundStage === 'QUESTION_WITH_PROMPTS') ||
-    (game?.currentCategory && roundStage === 'BEFORE_AUCTION') ||
-    (game?.currentCategory && roundStage === 'AUCTION') ||
-    (game?.currentCategory && roundStage === 'AUCTION_COMPLETE')
-  "
-  fxLayoutAlign="center center"
-  class="content-header category-header"
-  fxLayout="row"
-  fxLayoutGap="20"
->
-  <!-- <span>KATEGORIA:</span> -->
-  <span class="category">{{ game?.currentCategory }}</span>
-</div>
+<div fxLayout="column">
+  <div *ngIf="game && game.roundStage === 'NEW_GAME'">
+    <app-game-title></app-game-title>
+  </div>
+  <div>
+    <div
+      *ngIf="
+        (game?.currentCategory && roundStage === 'BEFORE_QUESTION') ||
+        (game?.currentCategory && roundStage === 'QUESTION') ||
+        (game?.currentCategory && roundStage === 'QUESTION_WITH_PROMPTS') ||
+        (game?.currentCategory && roundStage === 'BEFORE_AUCTION') ||
+        (game?.currentCategory && roundStage === 'AUCTION') ||
+        (game?.currentCategory && roundStage === 'AUCTION_COMPLETE')
+      "
+      fxLayoutAlign="center center"
+      class="content-header category-header"
+      fxLayout="row"
+      fxLayoutGap="20"
+    >
+      <!-- <span>KATEGORIA:</span> -->
+      <span class="category">{{ game?.currentCategory }}</span>
+    </div>
 
-<app-team-bubbles
-  *ngIf="
-    (roundStage === 'AUCTION' && game) ||
-    (roundStage === 'BEFORE_AUCTION' && game) ||
-    (roundStage === 'AUCTION_COMPLETE' && game)
-  "
-  [game]="game"
-  [auctionMode]="true"
-></app-team-bubbles>
+    <app-team-bubbles
+      *ngIf="
+        game &&
+        ((roundStage === 'AUCTION' && game) ||
+          (roundStage === 'BEFORE_AUCTION' && game) ||
+          (roundStage === 'AUCTION_COMPLETE' && game) ||
+          (roundStage === 'AFTER_ANSWER' &&
+            'PODPOWIEDŹ' === game.currentCategory) ||
+          (roundStage === 'AFTER_ANSWER' &&
+            'BIAŁA SKRZYNKA' === game.currentCategory))
+      "
+      [game]="game"
+      [auctionMode]="true"
+    ></app-team-bubbles>
 
-<app-team-bubbles
-  *ngIf="
-    (roundStage === 'ROUND_SUMMARY' && game) ||
-    (roundStage === 'CATEGORY_SELECTION' && game)
-  "
-  [game]="game"
-  [auctionMode]="false"
-></app-team-bubbles>
-
-<app-participant-question
-  #participantQuestionRef
-  *ngIf="
-    (roundStage === 'QUESTION' && game) ||
-    (roundStage === 'QUESTION_WITH_PROMPTS' && game) ||
-    (roundStage === 'QUESTION_WITH_ANSWER' && game)
-  "
-  [questionWinner]="game.auctionWinner"
-  [stakes]="game.bubbleStakes"
-  [roundNumber]="game.roundNumber"
-  [roundStage]="game.roundStage"
-></app-participant-question>
-<div fxLayoutAlign="center center">
-  <app-bubbles-counter
-    *ngIf="game && game.roundStage === 'AFTER_ANSWER'"
-    [stakesAmount]="game.bubbleStakes"
-    [answeredeCorrect]="isAnsweredCorrect()"
-    [teamColor]="getAuctionWinnerColor()"
-  ></app-bubbles-counter>
+    <app-team-bubbles
+      *ngIf="
+        game &&
+        (roundStage === 'ROUND_SUMMARY' || roundStage === 'CATEGORY_SELECTION')
+      "
+      [game]="game"
+      [auctionMode]="false"
+    ></app-team-bubbles>
+    <app-participant-question
+      #participantQuestionRef
+      *ngIf="
+        (roundStage === 'QUESTION' && game) ||
+        (roundStage === 'QUESTION_WITH_PROMPTS' && game) ||
+        (roundStage === 'QUESTION_WITH_ANSWER' && game)
+      "
+      [questionWinner]="game.auctionWinner"
+      [stakes]="game.bubbleStakes"
+      [roundNumber]="game.roundNumber"
+      [roundStage]="game.roundStage"
+    ></app-participant-question>
+    <app-end-game
+      fxLayoutAlign="center center"
+      *ngIf="game && game.teams.length === 1 && roundStage === 'GAME_FINISHED'"
+      [winner]="game.teams[0]"
+    ></app-end-game>
+    <div fxLayoutAlign="center center">
+      <app-bubbles-counter
+        *ngIf="
+          game &&
+          game.roundStage === 'AFTER_ANSWER' &&
+          'PODPOWIEDŹ' !== game.currentCategory &&
+          'BIAŁA SKRZYNKA' !== game.currentCategory
+        "
+        [stakesAmount]="game.bubbleStakes"
+        [answeredeCorrect]="isAnsweredCorrect()"
+        [teamColor]="getAuctionWinnerColor()"
+        #bubblesCounterRef
+      ></app-bubbles-counter>
+    </div>
+  </div>
 </div>

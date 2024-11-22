@@ -4,15 +4,41 @@
   fxLayoutGap="0"
   style="margin-top: 30px"
 >
-  <div fxLayout="column" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="center center" fxFlex="100">
     <div
       *ngIf="
         game.roundStage === 'AUCTION' || game.roundStage === 'AUCTION_COMPLETE'
       "
       class="auction-header"
       style="letter-spacing: 30px"
+      fxFlex="100"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
     >
-      LICYTACJA
+      <div fxFlex="15"></div>
+      <div fxFlex="70">LICYTACJA</div>
+      <div fxFlex="15" class="buttons" fxLayoutAlign="end end">
+        <div fxLayout="row">
+          <div
+            class="single-button"
+            [style]="possibleBackward ? 'opacity: 1;' : 'opacity: 0;'"
+          >
+            <button (click)="backwardAuction()">
+              <span class="material-symbols-outlined icon-style">undo</span>
+            </button>
+            <span class="tooltip-text" id="top">Cofnij</span>
+          </div>
+          <div
+            class="single-button"
+            [style]="possibleForward ? 'opacity: 1;' : 'opacity: 0;'"
+          >
+            <button (click)="forwardAuction()">
+              <span class="material-symbols-outlined icon-style">redo</span>
+            </button>
+            <span class="tooltip-text" id="top">Przywróć</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div fxLayout="row">
       <div

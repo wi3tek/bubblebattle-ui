@@ -1,4 +1,4 @@
-.toolbar {
+.nav-toolbar {
   top: 0;
   left: 0;
   right: 0;
@@ -8,28 +8,32 @@
   background-color: #292929;
   color: white;
   font-weight: 600;
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  color: white;
+  overflow: hidden;
 }
 
-.toolbar img {
+.nav-toolbar img {
   margin: 0 16px;
 }
 
-.toolbar #twitter-logo {
+.nav-toolbar #twitter-logo {
   height: 40px;
   margin: 0 8px;
 }
 
-.toolbar #youtube-logo {
+.nav-toolbar #youtube-logo {
   height: 40px;
   margin: 0 16px;
 }
 
-.toolbar #twitter-logo:hover,
-.toolbar #youtube-logo:hover {
+.nav-toolbar #twitter-logo:hover,
+.nav-toolbar #youtube-logo:hover {
   opacity: 0.8;
 }
 
-.content {
+.nav-content {
   display: flex;
   margin: 82px auto 32px;
   padding: 0 16px;
@@ -38,16 +42,27 @@
   align-items: center;
 }
 
-.link {
+.nav-link {
   text-decoration: none;
-  cursor: pointer;
 }
 
-.link:hover {
+.nav-link:hover {
   color: lightgray;
 }
 
-.title {
+.nav-title {
   letter-spacing: 5px;
-  text-transform: uppercase;
+  font-family: BubbleFont;
+  color: lightgray;
+  text-shadow: 5px 5px 5px black;
+  margin: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.nav-title:hover {
+  color: gray;
+}
+
+.nav-title:active {
+  text-shadow: 1px 1px 1cap white;
 }

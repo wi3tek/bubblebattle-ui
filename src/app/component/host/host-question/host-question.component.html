@@ -1,6 +1,15 @@
 <div fxLayout="column">
   <div fxFlex="100" fxLayoutAlign="end end">
-    <app-timer #timerRef></app-timer>
+    <app-timer
+      #timerRef
+      [seconds]="prepareSeconds()"
+      [audioEnabled]="false"
+      (secondsAgo)="takeSec($event)"
+      [startOnInit]="canStartTimer()"
+      *ngIf="
+        roundStage === 'QUESTION' || roundStage === 'QUESTION_WITH_PROMPTS'
+      "
+    ></app-timer>
   </div>
   <div fxFlex="100" class="question" fxLayout="column">
     <div class="question-header">
@@ -15,8 +24,22 @@
     </div>
     <div [class]="'question-content ' + questionWinner.teamColor">
       <div fxLayout="column">
-        <div class="question-value">
-          {{ questionWinner.activeQuestion?.value }}
+        <div
+          class="question-value"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+        >
+          <div>{{ questionWinner.activeQuestion?.value }}</div>
+          <div *ngIf="canDisplayImage()">
+            <img
+              class="question-img"
+              [src]="
+                './../../../../assets/question-data/' +
+                questionWinner.activeQuestion?.imageUrl
+              "
+              alt=""
+            />
+          </div>
         </div>
         <div
           class="question-answers"
@@ -26,11 +49,7 @@
           <div fxFlex="50" *ngFor="let answer of answers; let i = index">
             <div
               [class]="'answer answer-' + i"
-              [style]="
-                answer.correct
-                  ? 'text-decoration-line: underline; text-decoration-style: dashed;'
-                  : ''
-              "
+              [style]="answer.correct ? ' text-decoration: overline' : ''"
             >
               {{ answer.value }}
             </div>

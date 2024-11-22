@@ -14,6 +14,8 @@ export class SellAnswersComponent {
     this.confirmBtn.emit(+strValue);
   }
   cancel() {
+    console.log('ANULOWAŁEM SPRZEDAŻ');
+
     this.cancelBtn.emit();
   }
 }

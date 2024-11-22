@@ -2,7 +2,7 @@
   <div fxLayout="column" [class]="teamColor">
     <div [class]="'stakes-header'">WYGRANA</div>
     <div class="stakes-content dotted">
-      {{ prepareWonAmount() | spaceForThousands }}
+      {{ this.counterStart | spaceForThousands }}
     </div>
   </div>
 </div>

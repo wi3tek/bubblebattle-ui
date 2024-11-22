@@ -9,7 +9,7 @@
 
 .auction-content {
   font-size: 65px;
-  height: 150px;
+  height: 120px;
   letter-spacing: 5px;
   text-shadow: 5px 5px 5px black;
   align-content: center;
@@ -60,7 +60,7 @@
 
 .stakes-content {
   font-size: 65px;
-  height: 120px;
+  height: 100px;
   min-width: 350px;
 }
 

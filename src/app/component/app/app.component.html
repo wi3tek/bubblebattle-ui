@@ -1,12 +1,14 @@
 <!-- Toolbar -->
-<div class="toolbar link" [routerLink]="'/home'" role="banner">
-  <img
+<div class="nav-toolbar nav-link" role="banner">
+  <!-- <img
     style="align-content: center; margin-top: 10px"
     width="100"
     alt="logo"
     src="../../../assets/logo-bg.png"
-  />
-  <span class="title">{{ title }}</span>
+  /> -->
+  <span class="nav-title" title="Strona główna" [routerLink]="'/home'">{{
+    title
+  }}</span>
 </div>
 
 <router-outlet></router-outlet>

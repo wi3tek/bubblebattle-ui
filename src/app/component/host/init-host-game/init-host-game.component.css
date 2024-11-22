@@ -4,7 +4,7 @@
 }
 
 .winners-header {
-  font-size: 40px;
+  font-size: 30px;
   background: rgba(255, 255, 255, 0.1);
 }
 
@@ -16,7 +16,7 @@
 }
 
 .category-header {
-  font-size: 40px;
+  font-size: 30px;
   background: rgba(255, 255, 255, 0.5);
   color: black;
 }
@@ -24,7 +24,7 @@
 .category {
   font-weight: bolder;
 
-  font-size: 50px;
+  font-size: 40px;
   text-shadow: 2px 2px 2px lightgray;
 }
 
@@ -40,7 +40,7 @@
 
 .YELLOW {
   color: #785f05;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .stage-header {
-  font-size: 40px;
+  font-size: 30px;
   letter-spacing: 10px;
   color: gray;
   border-bottom: 1px solid gray;

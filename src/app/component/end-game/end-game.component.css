@@ -1,0 +1,100 @@
+.content {
+  margin-top: 100px;
+  width: 1100px;
+  text-align: center;
+  align-content: center;
+  padding: 100px;
+}
+
+.stakes-content {
+  letter-spacing: 5px;
+  text-shadow: 5px 5px 5px black;
+  align-content: center;
+  border: white solid 1px;
+  text-align: center;
+  color: white;
+}
+
+.auction-content {
+  height: 150px;
+  letter-spacing: 5px;
+  text-shadow: 5px 5px 5px black;
+  align-content: center;
+  border: white solid 1px;
+  color: white;
+  text-align: center;
+}
+
+.GREEN-header {
+  color: #26c429;
+}
+
+.BLACK-header {
+  color: #707070;
+}
+
+.BLUE-header {
+  color: #2e8ee4;
+}
+
+.YELLOW-header {
+  color: #dcc055;
+}
+
+.STAKES-header {
+  color: #a34d56;
+}
+
+.GREEN {
+  background: radial-gradient(#0b5b02, #031a00);
+}
+
+.BLUE {
+  background: radial-gradient(#042d6d, #030a24);
+}
+
+.YELLOW {
+  background: radial-gradient(#785f05, #2d2703);
+}
+
+.BLACK {
+  background: radial-gradient(#787878, #292929);
+}
+
+.STAKES {
+  background: radial-gradient(#474747, #1e1e1e);
+}
+
+.stakes-content {
+  font-size: 180px;
+  height: 250px;
+  /* width: 500px; */
+}
+
+.auction-content {
+  font-size: 100px;
+  height: 220px;
+}
+
+.stakes-header {
+  font-size: 40px;
+}
+
+.auction-STAKES {
+  opacity: 0;
+}
+
+.highest-stakes-true {
+  color: #fafc2c;
+  filter: brightness(200%);
+}
+
+.stakes-header {
+  font-weight: bolder;
+  background-color: black;
+  text-align: center;
+  font-size: 20px;
+  align-content: center;
+  letter-spacing: 6px;
+  padding: 4px;
+}
