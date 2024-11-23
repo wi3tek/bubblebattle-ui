@@ -29,6 +29,7 @@ import { GameTitleComponent } from './app/component/common/game-title/game-title
 import { CommonFunctionsComponent } from './app/component/common/common-functions/common-functions.component';
 import { EndGameComponent } from './app/component/end-game/end-game.component';
 import { ConfirmDialogComponent } from './app/component/common/confirm-dialog/confirm-dialog.component';
+import { QuestionFactsComponent } from './app/components/host/question-facts/question-facts.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ConfirmDialogComponent } from './app/component/common/confirm-dialog/co
     CommonFunctionsComponent,
     EndGameComponent,
     ConfirmDialogComponent,
+    QuestionFactsComponent,
   ],
   imports: [
     BrowserModule,

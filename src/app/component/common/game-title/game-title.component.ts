@@ -10,7 +10,7 @@ export class GameTitleComponent {
 
   ngOnInit() {
     let audio = new Audio();
-    audio.src = '../../../../assets/sounds/czolowka.wav';
+    audio.src = '../../../../assets/sounds/retro/intro.wav';
     audio.load();
     audio.muted;
     audio.play();

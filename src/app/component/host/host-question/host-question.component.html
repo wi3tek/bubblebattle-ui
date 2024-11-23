@@ -1,15 +1,24 @@
 <div fxLayout="column">
-  <div fxFlex="100" fxLayoutAlign="end end">
-    <app-timer
-      #timerRef
-      [seconds]="prepareSeconds()"
-      [audioEnabled]="false"
-      (secondsAgo)="takeSec($event)"
-      [startOnInit]="canStartTimer()"
-      *ngIf="
-        roundStage === 'QUESTION' || roundStage === 'QUESTION_WITH_PROMPTS'
-      "
-    ></app-timer>
+  <div fxFlex="100">
+    <div fxLayoutAlign="" fxLayout="row">
+      <div fxFlex="70" *ngIf="questionWinner.activeQuestion">
+        <app-question-facts
+          [hostFacts]="questionWinner.activeQuestion.hostFacts"
+        ></app-question-facts>
+      </div>
+      <div fxLayoutAlign="end end" fxFlex="30">
+        <app-timer
+          #timerRef
+          [seconds]="prepareSeconds()"
+          [audioEnabled]="false"
+          (secondsAgo)="takeSec($event)"
+          [startOnInit]="canStartTimer()"
+          *ngIf="
+            roundStage === 'QUESTION' || roundStage === 'QUESTION_WITH_PROMPTS'
+          "
+        ></app-timer>
+      </div>
+    </div>
   </div>
   <div fxFlex="100" class="question" fxLayout="column">
     <div class="question-header">

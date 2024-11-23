@@ -21,4 +21,12 @@ export class EndGameComponent {
       ? 'MISTRZOWIE'
       : '';
   }
+
+  ngOnInit() {
+    let audio = new Audio();
+    audio.src = '../../../assets/sounds/retro/end-game.wav';
+    audio.load();
+    audio.muted;
+    audio.play().catch((e) => console.log(e));
+  }
 }

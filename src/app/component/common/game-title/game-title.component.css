@@ -65,7 +65,7 @@ div .dot {
 .wrapper div:nth-child(1) {
   top: 20%;
   left: 50%;
-  animation: animate 20s linear forwards;
+  animation: animate 16s linear forwards;
   margin-top: 200px;
   text-align: center;
   font-weight: 1000;

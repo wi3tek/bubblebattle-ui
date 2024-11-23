@@ -55,7 +55,16 @@ export class InitParticipantGameComponent extends CommonFunctionsComponent {
         }
 
         if (this.game.roundStage === 'AFTER_ANSWER') {
-          this.playSound('../../../../assets/sounds/bubbles-counter.wav');
+          var answeredCorrect =
+            this.game?.auctionWinner.activeQuestion?.answeredCorrect;
+          if (answeredCorrect) {
+            console.log('hylok');
+            this.playSound('../../../../assets/sounds/bubbles-counter.wav');
+          } else {
+            console.log('hylok');
+
+            this.playSound('../../../../assets/sounds/retro/lose.wav');
+          }
         }
       },
     });
@@ -82,8 +91,23 @@ export class InitParticipantGameComponent extends CommonFunctionsComponent {
 
         if (this.roundStage === 'AFTER_ANSWER') {
           console.log('component reloaded');
-          this.playSound('../../../../assets/sounds/bubbles-counter.wav');
           this.reloadComponent(true);
+
+          var answeredCorrect =
+            this.game?.auctionWinner.activeQuestion?.answeredCorrect;
+
+          if (answeredCorrect) {
+            console.log('hylok');
+            this.playSound('../../../../assets/sounds/bubbles-counter.wav');
+          } else {
+            console.log('hylok');
+
+            this.playSound('../../../../assets/sounds/retro/lose.wav');
+          }
+        }
+
+        if (this.roundStage === 'BEFORE_AUCTION') {
+          this.playSound('../../../../assets/sounds/retro/after-category.wav');
         }
 
         if (this.game?.moneyUp) {
@@ -98,7 +122,7 @@ export class InitParticipantGameComponent extends CommonFunctionsComponent {
   }
 
   moneyUpSound() {
-    this.playSound('../../../../assets/sounds/bubbles-up.wav');
+    this.playSound('../../../../assets/sounds/retro/bubble-up.wav');
   }
 
   playSound(src: string) {
@@ -106,7 +130,7 @@ export class InitParticipantGameComponent extends CommonFunctionsComponent {
     audio.src = src;
     audio.load();
     audio.muted;
-    audio.play();
+    audio.play().catch((e) => console.log(e));
   }
 
   getAuctionWinnerColor(): string {

@@ -77,8 +77,17 @@ export class AuctionItemComponent {
     this.hostGameService.raiseStakes(request).subscribe({
       next: () => {
         this.stakesRaised.emit();
+        this.playSound('../../../../assets/sounds/retro/bubble-up.wav');
       },
     });
+  }
+
+  playSound(src: string) {
+    let audio = new Audio();
+    audio.src = src;
+    audio.load();
+    audio.muted;
+    audio.play().catch((e) => console.log(e));
   }
 
   raiseCustomStakes(amount: string, finalBid: boolean) {

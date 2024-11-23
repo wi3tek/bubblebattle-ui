@@ -92,7 +92,7 @@ export class TimerComponent {
       return;
     }
     this.audio = new Audio();
-    this.audio.src = '../../../assets/sounds/timer-1m.wav';
+    this.audio.src = '../../../assets/sounds/retro/question.wav';
     this.audio.load();
     this.audio.muted;
     this.audio.play();

@@ -150,6 +150,14 @@ export class InitHostGameComponent {
           this.hostQuestionRef.timerRef.stop();
         }
       }
+
+      if (this.game.roundStage === 'BEFORE_QUESTION') {
+        let audio = new Audio();
+        audio.src = '../../../../assets/sounds/retro/question-reading.wav';
+        audio.load();
+        audio.muted;
+        audio.play();
+      }
     }
   }
 

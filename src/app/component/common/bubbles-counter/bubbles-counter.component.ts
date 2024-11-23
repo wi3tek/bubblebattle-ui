@@ -4,7 +4,7 @@ import { Subject, interval, take, takeUntil, takeWhile } from 'rxjs';
 import { CommonFunctionsComponent } from '../common-functions/common-functions.component';
 import { Router } from '@angular/router';
 
-const duratiuonMs: number = 1000; // czas odliczania w milisekundach
+const duratiuonMs: number = 2000; // czas odliczania w milisekundach
 
 @Component({
   selector: 'app-bubbles-counter',
@@ -52,6 +52,11 @@ export class BubblesCounterComponent extends CommonFunctionsComponent {
       .pipe(takeWhile((x) => this.counterStart > x - 100))
       .subscribe(() => {
         this.counterStart = this.counterStart - 100;
+
+        if (this.counterStart === 100) {
+          this.counterStart = 0;
+        }
+
         if (this.counterStart < 0) {
           this.counterStart = 0;
         }
